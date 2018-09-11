@@ -1,0 +1,32 @@
+[
+    {
+        "expenseId": 1,
+        "expenseName": "Flat Rent",
+        "expense": 8000,
+        "expenseDate": "March 1, 2016"
+    },
+    {
+        "expenseId": 2,
+        "expenseName": "Maid Expenses",
+        "expense": 2000,
+        "expenseDate": "March 1, 2016"
+    },
+    {
+        "expenseId": 3,
+        "expenseName": "Food Expenses",
+        "expense": 6000,
+        "expenseDate": "March 31, 2016"
+    },
+    {
+        "expenseId": 4,
+        "expenseName": "Travel",
+        "expense": 4000,
+        "expenseDate": "March 31, 2016"
+    },
+    {
+        "expenseId": 5,
+        "expenseName": "Others",
+        "expense": 5000,
+        "expenseDate": "March 31, 2016"
+    }
+  ]

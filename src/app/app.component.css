@@ -1,0 +1,12 @@
+#csss{
+    text-align: center;
+    color: black;
+    /*background-image: url(C:\Angular-GettingStarted-master\SplitExpenses-Project\src\assets\images\Split.jpeg);*/
+    background-color: rgb(31, 83, 83);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    width: 100vw; /*vw == video screen width*/
+    height: 100vh;
+}

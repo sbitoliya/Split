@@ -1,0 +1,115 @@
+<div class="card">
+        <div class="card-header" style='text-align: center'>
+          {{pageTitle}}
+          <button class="btn btn-secondary" style="margin: 5px" (click)="normalSplit()">Normal Split</button>
+            <button class="btn btn-secondary" style="margin: 5px" (click)="percentSplit()">Weighted Split %</button>
+        </div>
+        <div class="card-body">
+            <div class='table-responsive' *ngIf='showNormalTable'>
+                <table class='table' 
+                *ngIf='friends && friends.length'> 
+                    <thead>
+                        <tr>
+                            <th>Friends</th>
+                            <th *ngIf='splitedExpense'>Expense Per Head</th>
+                            <th>Action</th>
+                        </tr>
+    
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let field of friends; let i = index">
+                            <td>
+                                <input [(ngModel)]="field.friendName" class="form-control" type="text" name="{{field.friendName}}" />
+                            </td>
+                            <td *ngIf='splitedExpense'>
+                                {{splitedExpense}}
+                            </td>
+                            <td>
+                                <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.friendName" name="newAttributeCode" />
+                            </td>
+                            <td *ngIf='splitedExpense'>
+                                  
+                            </td>
+                            <td>
+                                <button class="btn btn-default" type="button" (click)="addFieldValue()">Add Friend</button>
+                            </td>
+                        </tr>
+            
+                    </tbody>            
+                </table>
+
+
+            </div>
+            <!-- End Code for Normal Split -->
+
+            <!--Code for Percent Split-->
+            <div class='table-responsive' *ngIf='showPercentTable'>
+                    <table class='table' 
+                    *ngIf='friends && friends.length'> 
+                        <thead>
+                            <tr>
+                                <th>Friends</th>
+                                <th>Enter Weightage (%)</th>
+                                <th *ngIf='splitedExpense'>Expense Per Head</th>
+                                <th>Action</th>
+                            </tr>
+        
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let field of friends; let i = index">
+                                <td>
+                                    <input [(ngModel)]="field.friendName" class="form-control" type="text" name="{{field.friendName}}" />
+                                </td>
+                                <td></td>
+                                <td *ngIf='splitedExpense'>
+                                    {{splitedExpense}}
+                                </td>
+                                <td>
+                                    <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.friendName" name="newAttributeCode" />
+                                </td>
+                                <td>
+
+                                </td>
+                                <td *ngIf='splitedExpense'>
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-default" type="button" (click)="addFieldValue()">Add Friends</button>
+                                </td>
+                            </tr>
+                
+                        </tbody>            
+                    </table>
+    
+    
+                </div>
+
+                <!--End Code for Percent Split-->
+
+        </div>
+        <div class="card-footer" style='text-align: center'>
+            <normal-split *ngIf='showNormalTable' [friends]='friends' [expenses]='expenses' (notify)='onNotify($event)'></normal-split>
+            <percent-split *ngIf='showPercentTable'></percent-split>
+                <!--<div class = "row">
+                    <div class='col-md-2'>Splited Expenses
+                    </div>
+                    <div class='col-md-4'>-->
+                        <!--<button type="button" class='btn btn-secondary' (click)="">click to split</button>-->
+                    <!--</div>
+                    <div class='col-md-4'>-->
+                        <!--<input class="form-control" type="text" disabled />-->
+                        <!--{{splitedExpense}}--><!--{{ callSplitterMethod() }}-->
+                    <!--</div>
+                </div>-->
+        </div>
+    </div>
