@@ -1,14 +1,18 @@
 [
     {
-      "friendName" : "Malvika"
+      "friendName" : "Malvika",
+      "weightageAssigned": 50
     },
     {
-      "friendName" : "Shruti"
+      "friendName" : "Shruti",
+      "weightageAssigned": 10
     },
     {
-      "friendName" : "Niyanta"
+      "friendName" : "Niyanta",
+      "weightageAssigned": 20
     },
     {
-      "friendName" : "Anshita"
+      "friendName" : "Anshita",
+      "weightageAssigned": 10
     }
 ]

@@ -1,0 +1,14 @@
+friends = { 
+    "firstName": "John",
+    "lastName": "Chandra",
+    "email": "jc@gmail.com",
+    "phone", "9155553456"
+}
+
+
+expenses = {
+    "expenseDate": "10-JAN-2018"
+    "expenseType": "RENT"
+    "expenseAmount": 200
+    "expensedBy" : [{friends}]
+}

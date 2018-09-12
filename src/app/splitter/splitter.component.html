@@ -11,7 +11,7 @@
                     <thead>
                         <tr>
                             <th>Friends</th>
-                            <th *ngIf='splitedExpense'>Expense Per Head</th>
+                            <th *ngIf='splitedExpense && showExpPerHead'>Expense Per Head</th>
                             <th>Action</th>
                         </tr>
     
@@ -19,9 +19,9 @@
                     <tbody>
                         <tr *ngFor="let field of friends; let i = index">
                             <td>
-                                <input [(ngModel)]="field.friendName" class="form-control" type="text" name="{{field.friendName}}" />
+                                <input [(ngModel)]="field.friendName" class="form-control" type="text" name="{{field.friendName}}" disabled/>
                             </td>
-                            <td *ngIf='splitedExpense'>
+                            <td *ngIf='splitedExpense && showExpPerHead'>
                                 {{splitedExpense}}
                             </td>
                             <td>
@@ -30,9 +30,14 @@
                         </tr>
                         <tr>
                             <td>
-                                <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.friendName" name="newAttributeCode" />
+                                <input class="form-control" type="text" id="newAttributeCode" required [(ngModel)]="newAttribute.friendName" name="newAttributeCode"/>
+                                <!--<span *ngIf="newAttributeCode.errors && (newAttributeCode.dirty || newAttributeCode.touched)" class="alert alert-danger">
+                                    <span [hidden]="!newAttributeCode.errors.required">
+                                      Name is required!
+                                    </span>
+                                </span>-->
                             </td>
-                            <td *ngIf='splitedExpense'>
+                            <td *ngIf='splitedExpense && showExpPerHead'>
                                   
                             </td>
                             <td>
@@ -54,8 +59,8 @@
                         <thead>
                             <tr>
                                 <th>Friends</th>
-                                <th>Enter Weightage (%)</th>
-                                <th *ngIf='splitedExpense'>Expense Per Head</th>
+                                <th>Enter Weightage (100%)</th>
+                                <th>Expense Per Head</th><!--*ngIf='friends.percentPay'-->
                                 <th>Action</th>
                             </tr>
         
@@ -63,11 +68,13 @@
                         <tbody>
                             <tr *ngFor="let field of friends; let i = index">
                                 <td>
-                                    <input [(ngModel)]="field.friendName" class="form-control" type="text" name="{{field.friendName}}" />
+                                    <input [(ngModel)]="field.friendName" class="form-control" type="text" name="{{field.friendName}}" disabled/>
                                 </td>
-                                <td></td>
-                                <td *ngIf='splitedExpense'>
-                                    {{splitedExpense}}
+                                <td>
+                                    <input [(ngModel)]="field.weightageAssigned" class="form-control" type="number" max="100" min="0" name="{{field.weightageAssigned}}" (input)="lessThanHun();" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="field.percentPay" class="form-control" type="number" name="{{field.percentPay}}" disabled/>
                                 </td>
                                 <td>
                                     <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
@@ -75,13 +82,13 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.friendName" name="newAttributeCode" />
+                                    <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.friendName" name="newAttributeCode" required minlength="4" appForbiddenName="bob" #name="ngModel" />
                                 </td>
                                 <td>
-
+                                    <input class="form-control" type="number" max="100" min="0" id="newAttributeCode" [(ngModel)]="newAttribute.weightageAssigned" name="newAttributeCode" (input)="lessThanHun();" />
                                 </td>
-                                <td *ngIf='splitedExpense'>
-
+                                <td>
+                                    <input class="form-control" type="number" id="newAttributeCode" [(ngModel)]="newAttribute.percentPay" name="newAttributeCode" disabled/>
                                 </td>
                                 <td>
                                     <button class="btn btn-default" type="button" (click)="addFieldValue()">Add Friends</button>
@@ -99,7 +106,7 @@
         </div>
         <div class="card-footer" style='text-align: center'>
             <normal-split *ngIf='showNormalTable' [friends]='friends' [expenses]='expenses' (notify)='onNotify($event)'></normal-split>
-            <percent-split *ngIf='showPercentTable'></percent-split>
+            <percent-split *ngIf='showPercentTable' [friends]='friends' [expenses]='expenses' (notify)='onNot($event)'></percent-split>
                 <!--<div class = "row">
                     <div class='col-md-2'>Splited Expenses
                     </div>

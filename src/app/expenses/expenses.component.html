@@ -34,13 +34,13 @@
                     </tr>-->
                     <tr *ngFor="let field of expenses; let i = index">
                         <td>
-                            <input [(ngModel)]="field.expenseName" class="form-control" type="text" name="{{field.expenseName}}" />
+                            <input [(ngModel)]="field.expenseName" class="form-control" type="text" name="{{field.expenseName}}"/>
                         </td>
                         <td>
-                            <input [(ngModel)]="field.expense" class="form-control" type="text" name="{{field.expense}}" />
+                            <input [(ngModel)]="field.expense" class="form-control" type="number" min="0" name="{{field.expense}}" />
                         </td>
                         <td>
-                            <input [(ngModel)]="field.expenseDate" class="form-control" type="text" name="{{field.expenseDate}}" />
+                            <input [(ngModel)]="field.expenseDate" class="form-control" type="text" name="{{field.expenseDate}}" disabled/>
                         </td>
                         <td>
                             <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
@@ -48,13 +48,13 @@
                     </tr>
                     <tr>
                         <td>
-                            <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.expenseName" name="newAttributeCode" />
+                            <input class="form-control" type="text" id="newAttributeExpName" [(ngModel)]="newAttribute.expenseName" name="newAttributeExpName" />
                         </td>
                         <td>
-                            <input class="form-control" type="text" id="newAttributeName" [(ngModel)]="newAttribute.expense" name="newAttributeName" />
+                            <input class="form-control" type="number" min="0" id="newAttributeExp" [(ngModel)]="newAttribute.expense" name="newAttributeExp" />
                         </td>
                         <td>
-                            <input class="form-control" type="text" id="newAttributePrice" [(ngModel)]="newAttribute.expenseDate" name="newAttributePrice" />
+                            <input class="form-control" type="date" id="newAttributeDate" [(ngModel)]="newAttribute.expenseDate" name="newAttributeDate" />
                         </td>
                         <td>
                             <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>

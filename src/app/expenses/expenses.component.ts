@@ -29,6 +29,21 @@ export class ExpensesComponent implements OnInit {
     addFieldValue() {
         this.expenses.push(this.newAttribute)
         this.newAttribute = {};
+        // if(this.newAttribute == '' || this.newAttribute == undefined){
+        //   alert('Cannot Add Empty Input');
+        // }
+        for(let i=0;i< this.expenses.length; i++){
+          if(this.expenses[i].expenseName == '' || this.expenses[i].expense == null || this.expenses[i].expenseDate == null ){
+            alert('Should not Input Empty Values!!!');
+            break;
+          }
+        }
+    }
+
+    emptyNameVal(): void{
+      for(let i=0;i< this.expenses.length; i++){
+        
+      }
     }
 
     deleteFieldValue(index) {
