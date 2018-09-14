@@ -45,7 +45,7 @@
                             <input [(ngModel)]="field.expenseDate" class="form-control" type="text" name="{{field.expenseDate}}" disabled/>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" (click)="splitIndex(i)">
                                 Split This Expense
                             </button>
                             <!-- The Modal -->
@@ -55,18 +55,52 @@
                                 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                        <h4 class="modal-title">Modal Heading</h4>
+                                        <h4 class="modal-title">Split Expense</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                 
                                         <!-- Modal body -->
                                         <div class="modal-body">
-                                        Modal body..
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Friends</th>
+                                                    <th class="col-sm-4" *ngIf="showResult">Expense Per Head</th>
+                                                    <th class="col-sm-2">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let friend of friends; let j = index">
+                                                    <td> 
+                                                        <input [(ngModel)]="friend.friendName" class="form-control" type="text" name="{{friend.friendName}}" style="width:400px" disabled/>
+                                                    </td>
+                                                    <td *ngIf="showResult">
+                                                       <span style="width:400px">{{splittedExp}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-default" type="button" (click)="deleteValue(j)">Delete</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-control" type="text" id="newFriendCode" required pattern="[a-zA-Z][a-zA-Z ]+" [(ngModel)]="newFriend.friendName" name="newFriendCode" #name="ngModel" />
+                                                    </td>
+                                                    <td *ngIf="showResult">
+                                                          
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-default" type="button" (click)="addValue()">Add Friend</button>
+                                                    </td>
+                                                </tr>
+                                    
+                                            </tbody>
+                                        </table>
                                         </div>
                                 
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-success" (click)="normalSplitFunc();">Click to Split</button>
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                                         </div>
                                 
                                     </div>

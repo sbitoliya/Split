@@ -10,3 +10,7 @@
     width: 100vw; /*vw == video screen width*/
     height: 100vh;
 }
+
+body{
+    overflow-x:hidden;
+}

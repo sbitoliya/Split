@@ -1,18 +1,22 @@
 [
     {
       "friendName" : "Malvika",
-      "weightageAssigned": 50
+      "weightageAssigned": 40
     },
     {
       "friendName" : "Shruti",
-      "weightageAssigned": 10
+      "weightageAssigned": 7
     },
     {
       "friendName" : "Niyanta",
-      "weightageAssigned": 20
+      "weightageAssigned": 15
     },
     {
       "friendName" : "Anshita",
-      "weightageAssigned": 10
+      "weightageAssigned": 35
+    },
+    {
+      "friendName" : "Trapti",
+      "weightageAssigned": 3
     }
 ]

@@ -3,30 +3,91 @@
         "expenseId": 1,
         "expenseName": "Flat Rent",
         "expense": 8000,
-        "expenseDate": "31-03-2016"
+        "expenseDate": "31-03-2016",
+        "friendsAssociated": [
+            {
+                "friendName": "Shruti"
+            },
+            {
+                "friendName": "Anshita"
+            }, 
+            {
+                "friendName": "Malvika"
+            }
+        ]
     },
     {
         "expenseId": 2,
         "expenseName": "Maid Expenses",
         "expense": 2000,
-        "expenseDate": "31-03-2016"
+        "expenseDate": "31-03-2016",
+        "friendsAssociated": [
+            {
+                "friendName": "Trapti"
+            },
+            {
+                "friendName": "Niyanta"
+            }
+        ]
     },
     {
         "expenseId": 3,
         "expenseName": "Food Expenses",
         "expense": 6000,
-        "expenseDate": "31-03-2016"
+        "expenseDate": "31-03-2016",
+        "friendsAssociated": [
+            {
+                "friendName": "Niyanta"
+            },
+            {
+                "friendName": "Anshita"
+            }, 
+            {
+                "friendName": "Malvika"
+            },
+            {
+                "friendName": "Trapti"
+            }
+        ]
     },
     {
         "expenseId": 4,
         "expenseName": "Travel",
         "expense": 4000,
-        "expenseDate": "31-03-2016"
+        "expenseDate": "31-03-2016",
+        "friendsAssociated": [
+            {
+                "friendName": "Malvika"
+            },
+            {
+                "friendName": "Shruti"
+            }, 
+            {
+                "friendName": "Niyanta"
+            }
+        ]
     },
     {
         "expenseId": 5,
         "expenseName": "Others",
         "expense": 5000,
-        "expenseDate": "31-03-2016"
+        "expenseDate": "31-03-2016",
+        "friendsAssociated": [
+            {
+                "friendName": "Niyanta"
+            },
+            {
+                "friendName": "Trapti"
+            }, 
+            {
+                "friendName": "Malvika"
+            },
+            {
+                "friendName": "Shruti"
+            }, 
+            {
+                "friendName": "Anshita"
+            }
+        ]
     }
   ]
