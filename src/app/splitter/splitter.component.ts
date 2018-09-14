@@ -7,6 +7,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 
 @Component({
   templateUrl: './splitter.component.html',
+  styleUrls: ['./splitter.component.css']
   //directives: [ NormalSplitter ]
 })
 

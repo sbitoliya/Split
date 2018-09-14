@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header" style='text-align: center'>
+    <div class="card-header" style='text-align: center;'>
       {{pageTitle}}
     </div>
     <div class="card-body">
@@ -23,6 +23,8 @@
                         <th>Expense On</th>
                         <th>Cost</th>
                         <th>Expense Date</th>
+                        <th>Split Expense</th>
+                        <th>Action</th>
                     </tr>
 
                 </thead>
@@ -43,6 +45,35 @@
                             <input [(ngModel)]="field.expenseDate" class="form-control" type="text" name="{{field.expenseDate}}" disabled/>
                         </td>
                         <td>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                                Split This Expense
+                            </button>
+                            <!-- The Modal -->
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                        <h4 class="modal-title">Modal Heading</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                        Modal body..
+                                        </div>
+                                
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                
+                                    </div>
+                                    </div>
+                                </div>
+                        </td>
+                        <td>
                             <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
                         </td>
                     </tr>
@@ -55,6 +86,8 @@
                         </td>
                         <td>
                             <input class="form-control" type="date" id="newAttributeDate" [(ngModel)]="newAttribute.expenseDate" name="newAttributeDate" />
+                        </td>
+                        <td>
                         </td>
                         <td>
                             <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
