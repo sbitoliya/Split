@@ -35,6 +35,5 @@ import { SplitterService } from './splitter/splitter.service';
     ])
   ],
   bootstrap: [AppComponent],
-  providers: [ExpensesService, SplitterService]
 })
 export class AppModule { }

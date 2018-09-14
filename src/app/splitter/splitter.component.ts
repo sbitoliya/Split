@@ -21,6 +21,7 @@ export class SplitterComponent implements OnInit {
   showNormalTable: boolean = false;
   showPercentTable: boolean = false;
   showExpPerHead: boolean = true;
+  weightsSum: number = 0;
 
   constructor(private expensesService: ExpensesService, 
     private splitterService: SplitterService) {}
@@ -40,13 +41,76 @@ export class SplitterComponent implements OnInit {
     );
    }
 
+   onNotify(splitExpense:number):void {
+    //alert(splitExpense);
+    if(this.showNormalTable == true){
+      this.splitedExpense = splitExpense;
+      this.showExpPerHead = true;
+    }
+  }
+
+  onNot(percentSplitedExp:number[]):void {
+    //alert(percentSplitedExp);
+    if(this.showPercentTable == true){
+      for(let i=0; i<this.friends.length; i++){
+        this.friends[i].percentPay = percentSplitedExp[i];
+      }
+      this.weightsSum = this.calTotalPerc();
+      //this.percentSplitedExpense = percentSplitedExp;
+    }
+  }
+
+  calTotalPerc() : number{
+    for(var i=0; i< this.friends.length; i++){  //5
+      this.weightsSum += this.friends[i].weightageAssigned;
+    }
+    return this.weightsSum;
+   }
+
     addFieldValue() {
-        this.friends.push(this.newAttribute)
-        this.newAttribute = {};
+      
          if(this.showNormalTable == true){
-           this.showExpPerHead = false;
+          this.showExpPerHead = false;
+          if(this.newAttribute.friendName == '' || this.newAttribute.friendName == null){
+            alert('Enter a Name to continue!!!');
+          }else if (!/^[a-zA-Z]*$/g.test(this.newAttribute.friendName)) {
+            alert("Invalid characters!!!!");
+            this.newAttribute.friendName = '';
+          }
+          else{
+            this.friends.push(this.newAttribute)
+            this.newAttribute = {};
+          }
            //this.callSplitterMethod();
          }
+          if(this.showPercentTable == true){
+            var weightsCheck = 0;
+            weightsCheck = this.newAttribute.weightageAssigned;
+            if(this.newAttribute.friendName == '' || this.newAttribute.friendName == null){
+              alert('Enter a Name to continue!!!')
+            }else if (!/^[a-zA-Z]*$/g.test(this.newAttribute.friendName)) {
+              alert("Invalid characters!!!!");
+              this.newAttribute.friendName = '';
+            }
+            else{
+              if(weightsCheck > 100){
+                alert('Weight can not be more than 100% !!!');
+                this.newAttribute.weightageAssigned = null;
+              }
+              else{
+                this.weightsSum = 0;
+                this.calTotalPerc();
+                this.weightsSum += this.newAttribute.weightageAssigned;
+                if(this.weightsSum> 100){
+                  alert('Weight assigned to all friends should be equal to 100%!!');
+                  this.newAttribute.weightageAssigned = null;
+                }else{
+                  this.friends.push(this.newAttribute)
+                  this.newAttribute = {};
+                }
+              }
+            }                      
+          }
     }
 
     deleteFieldValue(index) {
@@ -55,24 +119,6 @@ export class SplitterComponent implements OnInit {
           this.showExpPerHead = false;
            //this.callSplitterMethod();
          }
-    }
-      
-    onNotify(splitExpense:number):void {
-      //alert(splitExpense);
-      if(this.showNormalTable == true){
-        this.splitedExpense = splitExpense;
-        this.showExpPerHead = true;
-      }
-    }
-
-    onNot(percentSplitedExp:number[]):void {
-      //alert(percentSplitedExp);
-      if(this.showPercentTable == true){
-        for(let i=0; i<this.friends.length; i++){
-          this.friends[i].percentPay = percentSplitedExp[i];
-        }
-        //this.percentSplitedExpense = percentSplitedExp;
-      }
     }
 
     // callSplitterMethod() : number {
@@ -108,6 +154,7 @@ export class SplitterComponent implements OnInit {
         weightsCheck = this.friends[i].weightageAssigned;
         if(weightsCheck>100){
           alert('Weight can not be more than 100% !!!');
+          this.friends[i].weightageAssigned = null;
           break;
         }
       }

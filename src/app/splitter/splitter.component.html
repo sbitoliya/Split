@@ -30,12 +30,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input class="form-control" type="text" id="newAttributeCode" required [(ngModel)]="newAttribute.friendName" name="newAttributeCode"/>
-                                <!--<span *ngIf="newAttributeCode.errors && (newAttributeCode.dirty || newAttributeCode.touched)" class="alert alert-danger">
-                                    <span [hidden]="!newAttributeCode.errors.required">
-                                      Name is required!
-                                    </span>
-                                </span>-->
+                                <input class="form-control" type="text" id="newAttributeCode" required pattern="[a-zA-Z][a-zA-Z ]+" [(ngModel)]="newAttribute.friendName" name="newAttributeCode" #name="ngModel" />
                             </td>
                             <td *ngIf='splitedExpense && showExpPerHead'>
                                   
@@ -45,8 +40,13 @@
                             </td>
                         </tr>
             
-                    </tbody>            
+                    </tbody>   
+                    <div style = "margin-top: 10px;align-items: right" [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                        <span [hidden]="!name.hasError('required')">Name is required</span>
+                        <span [hidden]="!name.hasError('pattern')">Only alphabets Allowed</span>
+                    </div>         
                 </table>
+                
 
 
             </div>
