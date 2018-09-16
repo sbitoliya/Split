@@ -10,7 +10,7 @@ import { IFriends } from "../common/friends";
 })
 
 export class SplitterService{
-  private friendsUrl = 'src/api/friends/friends.json';
+  private friendsUrl = 'src/assets/friends/friends.json';
   constructor(private http: HttpClient){ //injecting 'HttpClient' Service instance into variable 'http'
 
   }

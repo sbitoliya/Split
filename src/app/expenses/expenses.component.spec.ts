@@ -1,25 +1,54 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "../../../node_modules/@angular/core/testing";
+import { ExpensesComponent } from "./expenses.component";
+import { NO_ERRORS_SCHEMA } from "../../../node_modules/@angular/core";
+import { ExpensesService } from "./expenses.service";
+import { of } from "../../../node_modules/rxjs/internal/observable/of";
+import { By } from "../../../node_modules/@angular/platform-browser";
 
-import { ExpensesComponent } from './expenses.component';
+describe('ExpensesComponent (shallow tests)', () => {
+    let fixture:ComponentFixture<ExpensesComponent>;
+    let mockExpensesService;
+    let EXPENSES;
 
-describe('ExpensesComponent', () => {
-  let component: ExpensesComponent;
-  let fixture: ComponentFixture<ExpensesComponent>;
+    beforeEach(() => {
+        EXPENSES = [
+                { expenseId:1 , expenseName: 'Flat Rent',
+                    expense:8000, expenseDate: '31-03-2016',
+                    friendsAssociated: [{friendName: 'Shruti'},
+                                        {friendName: 'Anshita'}, 
+                                        {friendName: 'Malvika'}]
+                },
+                { expenseId: 2, expenseName: 'Maid Expenses',
+                    expense: 2000, expenseDate: '31-03-2016',
+                    friendsAssociated: [{friendName: 'Trapti'},
+                                        {friendName: 'Niyanta'}]
+                }
+        ]
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ExpensesComponent ]
-    })
-    .compileComponents();
-  }));
+        mockExpensesService = jasmine.createSpyObj(['getExpenses'])
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ExpensesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        TestBed.configureTestingModule({
+            declarations: [ExpensesComponent],
+            providers: [
+                {provide: ExpensesService, useValue: mockExpensesService}
+            ],
+            schemas: [NO_ERRORS_SCHEMA]
+        });
+        fixture = TestBed.createComponent(ExpensesComponent);
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    it('should set expenses correctly for service',() => {
+        mockExpensesService.getExpenses.and.returnValue(of(EXPENSES))
+        fixture.detectChanges();
+
+        expect(fixture.componentInstance.expenses.length).toBe(2);
+    });
+
+    it('should create one td for each element inside expenses + 4 Actions', () => {
+        mockExpensesService.getExpenses.and.returnValue(of(EXPENSES))
+        fixture.detectChanges();
+
+        expect(fixture.debugElement.queryAll(By.css('td')).length).toBe(19);
+    });
+
+})

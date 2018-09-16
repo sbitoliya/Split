@@ -11,9 +11,6 @@ import { SplitterComponent } from './splitter/splitter.component';
 import { NormalSplitter } from './splitter/normal-split.component';
 import { PercentSplitter } from './splitter/percent-split.component';
 
-import { ExpensesService } from './expenses/expenses.service';
-import { SplitterService } from './splitter/splitter.service';
-
 @NgModule({
   declarations: [
     AppComponent,

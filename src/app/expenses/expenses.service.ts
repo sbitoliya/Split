@@ -10,7 +10,7 @@ import { IExpenses } from '../common/expenses';
 })
 
 export class ExpensesService{
-  private expenseUrl = 'src/api/expenses/exp.json';
+  private expenseUrl = 'src/assets/expenses/exp.json';
   constructor(private http: HttpClient){ //injecting 'HttpClient' Service instance into variable 'http'
 
   }
